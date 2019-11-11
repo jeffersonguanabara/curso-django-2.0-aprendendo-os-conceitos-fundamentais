@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link type="text/css" rel="stylesheet" src="{% static 'assets/css/nova_trancasao.css' %}"> 
+</head>
+<body>
+    <h1>Transação</h1>
+    <form method="POST">{% csrf_token %}
+
+        {{ form.as_p }}
+
+        {% if tipo == 'editar' %}
+            <button type="submit" formaction="{% url 'editar_transacao' transacao.id %}">Editar</button>
+            <button type="submit" formaction="{% url 'deletar_transacao' transacao.id %}">Excluir</button>
+        {% else %}    
+            <button type="submit">Salvar</button>
+        {% endif %}
+    </form>
+</body>
+</html>
